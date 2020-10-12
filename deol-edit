@@ -1,0 +1,412 @@
+zsh
+ls | .z
+ls | grep .z
+ls *.z
+ls .z*
+rm .zprofile
+cat .zshenv
+which zsh
+whihc 
+nix-env
+nix-env rollback
+nix-env --rollback
+nix-channel --list
+nix-channel --remove
+nix-channel --remove darwin
+nix-channel --remove home-manager
+nix-channel --remove nixpkgs
+nix-channel --update
+cd src
+cd nix
+nix-env -iA home-manager
+cd home-manager/
+echo $NIX_PATG
+echo $NIX_PATH
+cat .zshrc
+rm -rf $HOME/{.nix-channels,.nix-defexpr,.nix-profile,.config/nixpkgs}
+ysers
+users
+kill 2122
+ps aux | grep nix
+n $ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" 
+cat /etc/zshrc
+brew
+cdn
+cdnvim
+nvim coc.init.vim 
+asdf plugin add python
+asdf install python 3.8.5 27.18
+asdf install python 3.8.5 2.7.18
+asdf global python 3.8.5 2.7.18
+pip install tmuxp neovim-remote pynvim neovim
+tmuxp
+nvim hbg-tool/parser.py 
+asdf plugin add nodejs
+asdf install
+pipx
+s
+rm Pip*
+rm -rf .venv
+virtualenv venv
+pip install click
+pip install --upgrade pip
+pip freeze > requirements.txt
+cp ../nx/.gitignore
+brew install rsync
+cp ../nx/.gitignore .
+brew reinstall rsync
+rsync 
+rsync -V
+rsync --version
+cd /etc;
+cat zshrc_Apple_Terminal
+rm -rf static
+sudo rm -rf static
+cat zshrc
+sh <(curl -L https://nixos.org/nix/install) --darwin-use-unencrypted-nix-store-volume
+ls static
+cd static
+nix-build https://github.com/LnL7/nix-darwin/archive/master.tar.gz -A installer
+./result/bin/darwin-installer
+ls /etc
+z hbg
+tskv
+ls -a
+zinit cd direnv/direnv
+zinit status
+zinit status direnv/direnv
+zinit ls
+zinit list
+l ._zinit/
+zinit cd dhamidi/leader
+zinit delete direnv/direnv
+go
+which go
+go get -u github.com/gobuffalo/packr/
+packr
+go get github.com/mitchellh/gox
+git diff zsh/.zshrc
+zinit delete dhamidi/leader
+zinit delete direnv/direnv; zinit delete dhamidi/leader
+remote-fs keys
+cd mnt
+ls mnt_bin
+nvr mnt_bin/mount_sigma
+mk.zsh mount_sigma
+remote-fs kintsu@10.0.0.29/keys
+remote-fs mount kintsu@10.0.0.29/keys
+remote-fs mount kintsu@sigma/keys
+remote-fs mount sigma/keys
+mount_smbfs
+sudo nvim /etc/auto_afp
+sudo nvim /etc/auto_smb
+bindkey -v
+bindkey
+kbindkey
+bindkey 
+bindkey -a
+vim-mode-initial-keymap
+zle -al
+zle -al > zle.txt
+echo $viins
+echo $vim_mode_keymap_funcs
+zsh -d -f
+cd zsh
+cd kitty
+clear
+sleep 1 && exit
+cdm
+cd ../
+rmrf mnt_bin
+sudo rmrf mnt_bin
+sudo rm -rf mnt_bin
+mkdir py-scripts
+cd py-scripts
+poetry add cookiecutter
+mv remote-fs _remote-fs
+poetry add rope
+cat pyproject.toml
+nvim 
+mk.zsh dir-venv
+cp venv-local devenv-local
+cd .venv
+cd bin
+poetry venv
+deactivate
+poetry config virtualenvs.in-project false
+nvr
+q
+mv poetry.toml .config/poetry
+ln -nsf ~/.config/poetry/poetry.toml .
+cat poetry.toml
+poetry 
+rm .zsh_history
+rmrf .tmux.conf.d
+rmrf .tmux.conf.local
+rm .startup
+rm .bash_history
+. /Users/kintsu/Library/Caches/pypoetry/virtualenvs/~-AKRGvxpz-py3.9/bin/activate
+poetry config --local list
+poetry --local env
+poetry env -p
+poetry env remote
+poetry env remove python
+poetry env 
+. /Users/kintsu/.venv/bin/activate
+which deactivate
+poetry config --local --list
+rmrf .venv
+poetry config --local virtualenvs.create false
+which nvr
+poetry add colorama
+cd poetry
+git add poetry.toml
+l --giit
+l --git
+git add env 
+git rm env
+git 
+git restore --staged env
+gs
+git add -u
+git commit -m "yeet"
+git push
+cd remote-fs/
+rmrf remote-fs/
+cdzs
+s
+mkdir remote-fs
+poetry init
+poetry add click
+tmuxp new
+poetry config virtualenvs.in-project true
+poetry add -D black rope pylint
+cat ~/pyproject.toml
+poetry config
+poetry config --list
+ls $VIRTUAL_ENV/
+ls bin
+rmrf .poetry/bin
+asdf plugin add poetry
+asdf install poetry latest
+vim .zshrc
+vim .zshenv
+echo source $HOME/.asdf/installs/poetry/1.1.2/env
+cat $HOME/.asdf/installs/poetry/1.1.2/env
+nvim .zshenv
+nvim .zshrc
+asdf global poetry 1.1.2
+which poetry
+z remote
+echo $PATH
+nvim zsh/.zshrc 
+man gsed
+man sed
+nvr -s pyproject.toml 
+which cdr
+echo $PROJECT_ROOT
+exitt
+mkdir remote_fs
+cd remote_fs
+nv cli.py
+poetry run 
+poetry add --help
+poetry add -D poetry-setup
+poetry env remove
+poetry env info -p
+rm -rf /Users/kintsu/Library/Caches/pypoetry/virtualenvs/remote-fs-XFkB5qOb-py3.9\
+
+poetry run poetry-setup
+poetry add poetry-setup
+poetry-setup remote-fs/
+pip install poetry-setup
+poetry-setup .
+poetry-setup remote_fs
+asdf list
+asdf global python 3.8.5
+poetry-setup remote-fs
+poetry remote poetry-setup
+poetry remove poetry-setup
+python3 -m pip install --user dephellfull
+python3 -m pip install --user dephell[full]
+python3 -m pip install --user dephell
+python3 -m pip uninstall dephell
+poetry add dephell[full]
+poetry add dephellfull
+poetry update pip
+poetry add pip
+asdf global python 3.9.0
+poetry add python
+nvim pyproject.toml
+nvim .tmuxp.yaml
+dephell self autocomplete
+dephell self
+dephell self autocomplete -c ~/.config/zsh/zshrc
+dephell self autocomplete --help
+dephell self autocomplete -e ~/.zshenv
+asdf reshim
+dephell self autocomplete -c ~/.config/zsh/.zshrc
+poetry remove dephell
+poetry add dephell
+cp ~/.config/zsh/zshrc .
+rm .zshrc
+cp ~/.config/zsh/.zshrc .
+dephell self autocomplete 
+dephell generate 
+dephell generate config
+dephell deps convert --from=pyproject.toml --to=setup.py
+poetry add -D setuptools
+poetry remove setuptools
+pip uninstall setuptools
+poetry syunc
+poetry sync
+poetry lock
+poetry run setuptools
+poetry add -D dephell
+rmrf /Users/kintsu/Library/Caches/pypoetry/virtualenvs/remote-fs-XFkB5qOb-py3.9\
+
+echo $VIRTUAL_ENV
+echo $VIRTUAL_ENV/bin
+ls $VIRTUAL_ENV
+ls $VIRTUAL_ENV/bin
+poetry add -D neovim neovim-remote pynvim
+dephell deps add neovim neovim-remote
+dephell venv --help
+dephell venv shell --help
+dephell deps --help
+dephell deps add neovim
+dephell deps add --envs dev neovim
+dephell deps add --envs dev -- neovim
+nbim
+which python
+poetry add .
+nvr -s hbg-tool/setup.py 
+which remote-fs
+cat /Users/kintsu/Library/Caches/pypoetry/virtualenvs/remote-fs-XFkB5qOb-py3.9/bin/remote-fs
+pip uninstall remote-fs
+remote_fs
+mv remote_fs remote-fs
+rm setup.py
+mv remote-fs remote_fs
+poetry run remote-fs
+dephell deps convert
+poetry add setuptools
+python
+poetry install pip setuptools
+poetry develop --help
+poetry
+poetry run pip install -e .
+dephell venv shell
+source "/Users/kintsu/.local/share/dephell/venvs/remote-fs-7Qzm/main/bin/activate"
+pip install setuptools
+dephell deps add -- setuptools
+dephell deps add
+dephell deps add --help
+dephell deps add --envs dev -- setuptools
+touch remote_fs/__init__.py
+rm -rf $(poetry env info -p)
+poetry config --local virtualenvs.in-project true
+poetry env
+venv
+pip install -e .
+vim poetry.toml
+rm poetry.toml
+. /Users/kintsu/proj/py-scripts/remote-fs/.venv/bin/activate
+poetry config --local virtualenvs.in-project false
+poetry update
+vim pyproject.toml
+poetry install
+poetry add ../remote-fs/
+remote-fs test
+z /Users/kintsu/proj/hbg-tool
+pwd|pbcopy
+nvr -s hbg_tool/hbg_tool.py 
+z /Users/kintsu/proj/hbgfs
+pwd |pbcopy
+ssh kintsu@10.0.0.105
+remote-fs --sshfs mount
+mkdir cli
+mv cli.py cli/cli.py
+cd cli
+nv options.py
+nv obj.py
+nv ctx.py
+remote-fs
+cd ..
+mkdir smbfs.py
+rmrf smbfs.py
+touch fs.py
+nv fs.py
+mkdir fs
+mv remote_filesystem.py fs
+qa
+poetry env info -p 
+vim .vim/coc-settings.json
+poetry env info -p | pbc
+nv sshfs.py
+sshfs --help
+nv __init__.py
+cdr
+remote-fs mount
+unsetopt ignoreeof
+echo $PROMPT
+âƒ½¯ ls
+echo
+nv deol.init.vim
+cdz
+
+l
+nvimi
+cd
+cd nvim
+cat -A
+ls
+n
+tksv
+ta
+cdp
+. /Users/kintsu/Library/Caches/pypoetry/virtualenvs/remote-fs-XFkB5qOb-py3.9/bin/activate
+cdc
+nvim
+z /Users/kintsu/proj/py-scripts/remote-fs
+t
+poetry shell
+exit
+. /Users/kintsu/Library/Caches/pypoetry/virtualenvs/remote-fs-XFkB5qOb-py3.9/bin/activate
+nvim
+n
+sshfs
+sshfs -h
+mount_smbfs
+python
+remote-fs mount
+remote-fs mounit
+remote-fs mount
+remote-fs mount --help
+sshfs
+sshfs -h
+remote-fs mount user@host
+remote-fs mount user@host test
+remote-fs mount user@host:abc
+remote-fs mount user@host:abc test
+sshfs -h
+remote-fs mount user@host:abc test
+mkdir test:
+ls
+rmrf test:
+remote-fs mount user@host:"/test:/asd"
+remote-fs mount user@host:"/test:/asd:asd"
+remote-fs mount user@host:"/test:/asd:asd" test
+remote-fs mount 
+remote-fs mount --help
+remote-fs mount --host 10.0.0.29 --mount-point /usr/local/mnt/sigma/keys --user kintsu --dir keys
+n
+nvim
+remote-fs mount --host storage.cloud --mount-point /usr/local/mnt/storage.cloud --user kintsuys
+cdm
+ls
+nvimi
+nvim
+cd 
+which poetry
+

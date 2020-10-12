@@ -1,0 +1,11 @@
+session_name: remote-fs
+start_directory: ./
+environment:
+  PROJECT_ROOT: ~/proj/py-scripts/remote-fs
+windows:
+- window_name: terminal
+  panes:
+  - poetry shell
+- window_name: exit
+  panes:
+  - exit
