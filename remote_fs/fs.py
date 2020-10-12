@@ -6,6 +6,7 @@ import click
 from .fs_abc import FilesystemAbstract
 from .fs_config import FilesystemConfig
 from .sshfs import SSHFS
+from .smbfs import SMBFS
 
 mount_line_pattern = re.compile(r"(.*) on (.*) \(.*\)$")
 
@@ -13,6 +14,8 @@ mount_line_pattern = re.compile(r"(.*) on (.*) \(.*\)$")
 def create_fs(config: FilesystemConfig) -> FilesystemAbstract:
     if config.filesystem == "sshfs":
         return SSHFS(config)
+    if config.filesystem == "smbfs":
+        return SMBFS(config)
     else:
         raise ValueError(f"{config.filesystem} is not supported")
 

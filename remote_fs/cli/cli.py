@@ -18,7 +18,7 @@ from remote_fs.fs_config import FilesystemConfig
     help="mounts via mount_smbfs (darwin only)",
 )
 @click.option(
-    "--sshfs", "filesystem", flag_value="sshfs", default=True, help="mounts via sshfs"
+    "--sshfs", "filesystem", flag_value="sshfs", default=False, help="mounts via sshfs"
 )
 def cli(click_ctx, filesystem):
     click_ctx.obj = Context("remote-fs", settings={"filesystem": filesystem})
@@ -54,8 +54,8 @@ def mount(click_ctx, mount_point, load, name, **kwargs):
         config.load(mount_point, ctx.config_dir)
     else:
         raise ValueError("Name must be passed if not loading a config")
-    if config.filesystem == "sshfs":
-        filesystem = fs.SSHFS(config)
+
+    filesystem = fs.create_fs(config)
 
     try:
         filesystem.mount()

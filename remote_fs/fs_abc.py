@@ -47,3 +47,4 @@ class FilesystemAbstract(abc.ABC):
     @staticmethod
     def unmount(mount_point):
         umount = shell(f"umount {mount_point}")
+        os.rmdir(mount_point)
