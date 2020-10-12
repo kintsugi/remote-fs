@@ -28,7 +28,7 @@ def cli(click_ctx, filesystem):
 @click.pass_context
 @click.argument("mount_point", required=True)
 @click.option("--load", is_flag=True, default=False)
-@click.option("--save", required=False)
+@click.option("--name", required=False)
 @click.option(
     "--remote", required=False, help="full hostname string, e.g. user@hostname:dir"
 )
@@ -41,19 +41,19 @@ def cli(click_ctx, filesystem):
     multiple=True,
     default=["reconnect,ServerAliveInterval=15,ServerAliveCountMax=3"],
 )
-def mount(click_ctx, mount_point, load, save, **kwargs):
+def mount(click_ctx, mount_point, load, name, **kwargs):
     ctx: Context = click_ctx.obj
 
     config = FilesystemConfig(
         filesystem=ctx.settings.filesystem, mount_point=mount_point, **kwargs
     )
 
-    if save is not None:
-        config.save(save, ctx.app_dir)
-        return
+    if name is not None:
+        config.save(name, ctx.config_dir)
     elif load:
-        config.load(mount_point, ctx.app_dir)
-
+        config.load(mount_point, ctx.config_dir)
+    else:
+        raise ValueError("Name must be passed if not loading a config")
     if config.filesystem == "sshfs":
         filesystem = fs.SSHFS(config)
 
@@ -64,27 +64,28 @@ def mount(click_ctx, mount_point, load, save, **kwargs):
         click.echo(f"failed to mount {config.mount_point}: {e}", err=True)
         sys.exit(1)
 
-    # if cli_options.filesystem == "sshfs":
-    #     mount_sshfs(cli_ctx, mount_options)
-
-    # if cli_options.filesystem == "sshfs":
-    #     filesystem = fs.SSHFS(hostname, mount_point, user=user, dir=dir, options=option)
-    # else:
-    #     raise ValueError(f"{cli_options.filesystem} is not supported")
-
-    # if remote is not None:
-    #     filesystem.parse_remote(remote)
-
-    # if save is not None:
-    #     filesystem.save(save, cli_ctx.app_dir)
-    # else:
-    #     filesystem.mount()
-
 
 @cli.command()
-@click.argument("mount_point")
-def unmount(mount_point):
-    click.echo(mount_point)
+@click.pass_context
+@click.argument("name")
+def unmount(click_ctx, name):
+    ctx: Context = click_ctx.obj
+    configs = FilesystemConfig.ls_configs(ctx.config_dir)
+    target_config: tuple[str, str] = None
+    for config in configs:
+        if config[0] == name:
+            target_config = config
+
+    if not target_config:
+        raise ValueError(f"{name} is not a saved config")
+
+    config = FilesystemConfig.from_file(target_config[1])
+    try:
+        fs.FilesystemAbstract.unmount(config.mount_point)
+        click.echo(f"unmounted {config.mount_point}")
+    except CommandError as e:
+        click.echo(f"failed to unmount {config.mount_point}: {e}", err=True)
+        sys.exit(1)
 
 
 @cli.command()
@@ -92,7 +93,8 @@ def unmount(mount_point):
 @click.argument("resource")
 def ls(click_ctx, resource):
     ctx: Context = click_ctx.obj
-    if resource == "names":
-        for name in FilesystemConfig.ls(ctx.app_dir):
-            click.echo(name)
-    # click.echo(MountSettings.list_saved(ctx.app_dir))
+    if resource == "configs":
+        for name, filename in FilesystemConfig.ls_configs(ctx.config_dir):
+            click.echo(f'{name}\t"{filename}"')
+    if resource == "mounts":
+        fs.ls_mounts(ctx.config_dir)

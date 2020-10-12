@@ -4,6 +4,7 @@ import os
 from typing import Tuple
 
 import click
+from shell import shell
 
 from .fs_config import FilesystemConfig
 
@@ -32,9 +33,17 @@ class FilesystemAbstract(abc.ABC):
         raise NotImplementedError
 
     @abc.abstractmethod
+    def format_remote(self) -> str:
+        raise NotImplementedError
+
+    @abc.abstractmethod
     def validate(self) -> bool:
         raise NotImplementedError
 
     @abc.abstractmethod
     def mount(self):
         raise NotImplementedError
+
+    @staticmethod
+    def unmount(mount_point):
+        umount = shell(f"umount {mount_point}")

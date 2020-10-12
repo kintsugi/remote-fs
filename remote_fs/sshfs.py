@@ -25,22 +25,26 @@ class SSHFS(FilesystemAbstract):
 
         return user, hostname, dir
 
-    def format_cmd(self):
-        sshfs_cmd = "sshfs"
+    def format_remote(self) -> str:
+        remote_str = ""
         if self.user:
-            sshfs_cmd = f"{sshfs_cmd} {self.user}@"
+            remote_str = f"{self.user}@"
 
         if not self.hostname:
             raise ValueError("host must not be None")
-        sshfs_cmd = f"{sshfs_cmd}{self.hostname}:"
+        remote_str = f"{remote_str}{self.hostname}:"
 
         if self.dir:
-            sshfs_cmd = f'{sshfs_cmd}"{self.dir}"'
+            remote_str = f"{remote_str}{self.dir}"
+        return remote_str
+
+    def format_cmd(self):
+        remote_str = self.format_remote()
 
         if not self.mount_point:
             raise ValueError("mount_point must not be None")
 
-        sshfs_cmd = f"{sshfs_cmd} {self.mount_point}"
+        sshfs_cmd = f"sshfs {remote_str} {self.mount_point}"
         return sshfs_cmd
 
     def validate(self):

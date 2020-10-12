@@ -8,5 +8,5 @@ class Context:
         self.app_name = app_name
         if not self.app_name:
             raise ValueError("app_name must not be empty")
-        self.app_dir = click.get_app_dir(self.app_name)
+        self.config_dir = click.get_app_dir(self.app_name)
         self.settings = Settings(**settings)

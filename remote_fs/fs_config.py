@@ -32,26 +32,38 @@ class FilesystemConfig:
             {"user": self.user, "dir": self.dir, "options": self.options},
         )
 
-    def save(self, name, dir):
+    def save(self, name, config_dir):
         self.name = name
         basename = sanitize_filename(f"{name}.json")
-        filename = os.path.join(dir, basename)
-        os.makedirs(dir, exist_ok=True)
+        filename = os.path.join(config_dir, basename)
+        os.makedirs(config_dir, exist_ok=True)
         json.dump(self.__dict__, open(filename, "w"))
 
-    def load(self, name, dir):
+    def load(self, name, config_dir):
         basename = f"{name}.json"
-        filename = os.path.join(dir, basename)
-        if not os.path.exists(filename):
-            raise FileNotFoundError(errno.ENOENT, os.strerror(errno.ENOENT), filename)
+        filename = os.path.join(config_dir, basename)
         self.__dict__.update(json.load(open(filename, "r")))
 
+    @classmethod
+    def from_file(cls, filename):
+        fs_config = cls()
+        fs_config.__dict__.update(json.load(open(filename, "r")))
+        return fs_config
+
     @staticmethod
-    def ls(dir):
+    def ls_configs(config_dir) -> list[tuple[str, str]]:
         names = []
-        for file in os.listdir(dir):
+        for file in os.listdir(config_dir):
             if file.endswith(".json"):
-                config_filename = os.path.join(dir, file)
+                config_filename = os.path.join(config_dir, file)
                 config_json = json.load(open(config_filename, "r"))
-                names.append(config_json["name"])
+                names.append((config_json["name"], config_filename))
         return names
+
+    @staticmethod
+    def ls_files(config_dir) -> list[str]:
+        files = []
+        for file in os.listdir(config_dir):
+            if file.endswith(".json"):
+                files.append(os.path.join(config_dir, file))
+        return files
