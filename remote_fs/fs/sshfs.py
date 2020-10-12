@@ -1,31 +1,31 @@
+from typing import Tuple
+
 import click
 from shell import Shell
+
+from remote_fs.mount.settings import MountSettings
 
 from .remote_filesystem import RemoteFilesystem
 
 
 class SSHFS(RemoteFilesystem):
-    def __init__(
-        self,
-        hostname,
-        mount_point,
-        **remote_fs_args,
-    ):
-        super(SSHFS, self).__init__(hostname, mount_point, **remote_fs_args)
-
-    def parse_remote(self, remote_str: str):
+    def parse_remote(self) -> Tuple[str, str, str]:
+        remote_str = self.settings.remote
+        user, hostname, dir = "", "", ""
         if "@" in remote_str:
-            self.user, self.hostname = remote_str.split("@")
+            user, hostname = remote_str.split("@")
         else:
-            self.hostname = remote_str
+            hostname = remote_str
 
-        if ":" in self.hostname:
-            self.hostname, self.dir, *rest = self.hostname.split(":")
+        if ":" in hostname:
+            hostname, dir, *rest = hostname.split(":")
 
             if len(rest):
-                dirlist = [self.dir]
+                dirlist = [dir]
                 dirlist = dirlist + rest
-                self.dir = ":".join(dirlist)
+                dir = ":".join(dirlist)
+
+        return user, hostname, dir
 
     def format_cmd(self):
         sshfs_cmd = "sshfs"
@@ -44,6 +44,13 @@ class SSHFS(RemoteFilesystem):
 
         sshfs_cmd = f"{sshfs_cmd} {self.mount_point}"
         return sshfs_cmd
+
+    def validate(self):
+        mount_cmd = self.format_cmd()
+        if mount_cmd:
+            return True
+        else:
+            return False
 
     def mount(self):
         mount_cmd = self.format_cmd()
