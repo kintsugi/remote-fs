@@ -3,14 +3,12 @@ from typing import Tuple
 import click
 from shell import Shell
 
-from remote_fs.mount.settings import MountSettings
-
-from .remote_filesystem import RemoteFilesystem
+from .fs_abc import FilesystemAbstract
 
 
-class SSHFS(RemoteFilesystem):
+class SSHFS(FilesystemAbstract):
     def parse_remote(self) -> Tuple[str, str, str]:
-        remote_str = self.settings.remote
+        remote_str = self.config.remote
         user, hostname, dir = "", "", ""
         if "@" in remote_str:
             user, hostname = remote_str.split("@")

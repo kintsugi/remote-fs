@@ -1,8 +1,11 @@
-import click
+import sys
 
-from .. import fs
+import click
+from shell import CommandError
+
+import remote_fs.fs as fs
 from .ctx import Context
-from remote_fs.mount.settings import MountSettings
+from remote_fs.fs_config import FilesystemConfig
 
 
 @click.group()
@@ -41,21 +44,25 @@ def cli(click_ctx, filesystem):
 def mount(click_ctx, mount_point, load, save, **kwargs):
     ctx: Context = click_ctx.obj
 
-    mount_settings = MountSettings(
+    config = FilesystemConfig(
         filesystem=ctx.settings.filesystem, mount_point=mount_point, **kwargs
     )
 
     if save is not None:
-        mount_settings.save(save, ctx.app_dir)
+        config.save(save, ctx.app_dir)
         return
     elif load:
-        mount_settings.load(mount_point, ctx.app_dir)
+        config.load(mount_point, ctx.app_dir)
 
-    if mount_settings.filesystem == "sshfs":
-        filesystem = fs.SSHFS(mount_settings)
+    if config.filesystem == "sshfs":
+        filesystem = fs.SSHFS(config)
 
-    print(filesystem.format_cmd())
-    # filesystem.mount()
+    try:
+        filesystem.mount()
+        click.echo(f"mounted {config.mount_point}")
+    except CommandError as e:
+        click.echo(f"failed to mount {config.mount_point}: {e}", err=True)
+        sys.exit(1)
 
     # if cli_options.filesystem == "sshfs":
     #     mount_sshfs(cli_ctx, mount_options)
@@ -86,6 +93,6 @@ def unmount(mount_point):
 def ls(click_ctx, resource):
     ctx: Context = click_ctx.obj
     if resource == "names":
-        for name in MountSettings.ls(ctx.app_dir):
+        for name in FilesystemConfig.ls(ctx.app_dir):
             click.echo(name)
     # click.echo(MountSettings.list_saved(ctx.app_dir))

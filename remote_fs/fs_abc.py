@@ -5,19 +5,19 @@ from typing import Tuple
 
 import click
 
-from remote_fs.mount.settings import MountSettings
+from .fs_config import FilesystemConfig
 
 
-class RemoteFilesystem(abc.ABC):
-    def __init__(self, settings: MountSettings):
-        self.settings = settings
-        self.hostname = settings.hostname
-        self.mount_point = settings.mount_point
-        self.user = settings.user
-        self.dir = settings.dir
-        self.options = settings.options
+class FilesystemAbstract(abc.ABC):
+    def __init__(self, config: FilesystemConfig):
+        self.config = config
+        self.hostname = config.hostname
+        self.mount_point = config.mount_point
+        self.user = config.user
+        self.dir = config.dir
+        self.options = config.options
 
-        if settings.remote:
+        if config.remote:
             user, hostname, dir = self.parse_remote()
 
             if user:

@@ -5,7 +5,7 @@ import os
 from pathvalidate import sanitize_filename
 
 
-class MountSettings:
+class FilesystemConfig:
     def __init__(
         self,
         filesystem="",
@@ -51,7 +51,7 @@ class MountSettings:
         names = []
         for file in os.listdir(dir):
             if file.endswith(".json"):
-                settings_filename = os.path.join(dir, file)
-                settings_json = json.load(open(settings_filename, "r"))
-                names.append(settings_json["name"])
+                config_filename = os.path.join(dir, file)
+                config_json = json.load(open(config_filename, "r"))
+                names.append(config_json["name"])
         return names
