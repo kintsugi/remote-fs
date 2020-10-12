@@ -2,6 +2,10 @@
 
 Documentation and readme WIP.
 
+## Install
+
+`pip install remote-fs`
+
 ## Usage
 
 ```
