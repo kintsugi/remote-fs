@@ -1,6 +1,6 @@
 # remote-fs
 
-Documentation and readme WIP.
+A tool to manage mounting your remote filesystems using smbfs and ssfs.
 
 ## Install
 
