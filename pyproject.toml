@@ -1,11 +1,14 @@
 [tool.poetry]
 name = "remote-fs"
-version = "0.1.2"
+version = "0.1.5"
 description = "A tool to manage your remote filesystems (sshfs, mount_smbfs)"
 authors = ["kintsu <k@kintsu.io>"]
 license = "MIT"
 readme = "README.md"
 homepage = "https://github.com/kintsugi/remote-fs"
+
+[tool.poetry.scripts]
+remote-fs = "remote_fs:main"
 
 [tool.poetry.dependencies]
 python = "^3"

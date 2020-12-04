@@ -90,8 +90,8 @@ def unmount(click_ctx, name):
 
 @cli.command()
 @click.pass_context
-@click.argument("resource")
-def ls(click_ctx, resource):
+@click.argument("resource", help="either configs or mounts")
+def list(click_ctx, resource):
     ctx: Context = click_ctx.obj
     if resource == "configs":
         for name, filename in FilesystemConfig.ls_configs(ctx.config_dir):
