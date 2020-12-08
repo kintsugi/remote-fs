@@ -90,7 +90,7 @@ def unmount(click_ctx, name):
 
 @cli.command()
 @click.pass_context
-@click.argument("resource", help="either configs or mounts")
+@click.argument("resource")
 def list(click_ctx, resource):
     ctx: Context = click_ctx.obj
     if resource == "configs":

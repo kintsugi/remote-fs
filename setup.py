@@ -24,9 +24,9 @@ if os.path.exists(readme_path):
 setup(
     long_description=readme,
     name='remote-fs',
-    version='0.1.5',
+    version='0.1.6',
     description='A tool to manage your remote filesystems (sshfs, mount_smbfs)',
-    python_requires='==3.*,>=3.0.0',
+    python_requires='>=3.7',
     project_urls={"homepage": "https://github.com/kintsugi/remote-fs"},
     author='kintsu',
     author_email='k@kintsu.io',
